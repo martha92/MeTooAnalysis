@@ -14,9 +14,9 @@ class InstagramSpider(scrapy.Spider):
     custom_settings = {
         # 'FEED_URI': './scraped/%(name)s/%(hashtag)s/%(date)s',
         'FEED_FORMAT': 'csv',
-        'FEED_URI': 'scraped/metoo/metoo/test.csv'
+        'FEED_URI': 'scraped/metoo/metoo/metoo.csv'
     }
-    checkpoint_path = './scraped/%(name)s/%(hashtag)s/test.csv'
+    checkpoint_path = './scraped/%(name)s/%(hashtag)s/metoo.csv'
 
     # def closed(self, reason):
     #     self.logger.info('Total Elements %s', response.url)
@@ -29,7 +29,7 @@ class InstagramSpider(scrapy.Spider):
         self.start_urls = [
             "https://www.instagram.com/explore/tags/"+self.hashtag+"/?__a=1"]
         self.date = time.strftime("%d-%m-%Y_%H")
-        self.checkpoint_path = './scraped/%s/%s/test.csv' % (
+        self.checkpoint_path = './scraped/%s/%s/metoo.csv' % (
             self.name, self.hashtag)
         self.readCheackpoint()
 
@@ -111,7 +111,7 @@ class InstagramSpider(scrapy.Spider):
             for edge in (media['edge_media_to_tagged_user']['edges']):
                 user = edge['node']['user']['username']
                 tagged_user.append(user)
-        return Post(id=media['id'],
+        return Post(id_=media['id'],
                     shortcode=media['shortcode'],
                     caption=caption,
                     display_url=media['display_url'],

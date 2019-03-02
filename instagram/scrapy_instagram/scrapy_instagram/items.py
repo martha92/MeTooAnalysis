@@ -10,7 +10,7 @@ from scrapy.item import Item, Field
 
 class Post(Item):
     # define the fields for your item here like:
-    id = Field()
+    id_ = Field()
     shortcode = Field()
     display_url = Field()
     caption = Field()
