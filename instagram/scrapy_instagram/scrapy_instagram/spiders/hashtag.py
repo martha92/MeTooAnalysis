@@ -6,7 +6,6 @@ import json
 import scrapy
 
 
-# -*- coding: utf-8 -*-
 
 
 class InstagramSpider(scrapy.Spider):
