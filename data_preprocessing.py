@@ -1,4 +1,3 @@
-
 import pandas as pd
 import nltk
 from nltk.tokenize import TweetTokenizer
@@ -26,13 +25,6 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
-stop_words_en = set(nltk.corpus.stopwords.words('english'))
-stop_words_fr = set(nltk.corpus.stopwords.words('french'))
-stop_words_dutch = set(nltk.corpus.stopwords.words('dutch'))
-stop_words_gm = set(nltk.corpus.stopwords.words('german'))
-stop_words_sw = set(nltk.corpus.stopwords.words('swedish'))
-stop_words_sp = set(nltk.corpus.stopwords.words('spanish'))
-stop_words_it = set(nltk.corpus.stopwords.words('italian'))
 
 def getStopWords(language):
     if (language in ['english','french','dutch','german','swedish','spanish','italian']):
@@ -40,12 +32,12 @@ def getStopWords(language):
         return stop_words
     return None
 
-def chunck_generator(filename, header=False,chunk_size = 10 ** 5):
+def chunck_generator(filename, header=False,chunk_size = 10 ** 3):
     for chunk in pd.read_csv(filename,delimiter=',', iterator=True, chunksize=chunk_size, parse_dates=[1,12] ): 
         yield (chunk)
 
-def generator( filename, header=False,chunk_size = 10 ** 5):
-    chunk = chunck_generator(filename, header=False,chunk_size = 10 ** 5)
+def generator( filename, header=False,chunk_size = 10 ** 3):
+    chunk = chunck_generator(filename, header=False,chunk_size = 10 ** 3)
     for row in chunk:
         yield row
 
@@ -56,13 +48,21 @@ def remoteSpecialChTweets(tweet):
     new_string = re.sub('(rt)','',new_string)
     new_string = re.sub('(http|https|ftp)\S+(?=( |$))','',new_string)
     new_string = re.sub('(?<=)#.+?(?=( |$))','',new_string)
+    new_string = re.sub('(?<=)@.+?(?=(|$))', '', new_string)
+    new_string = re.sub('(http|https|ftp)\S+(?=(|$))','',new_string)
+    new_string = re.sub('(?<=)#.+?(?=(|$))','',new_string)
     return new_string
 
 def removeStopWords(row):
     language = row['language_desc']
     stop_words = getStopWords(str(language))
     if stop_words != None:
-        new_tweet = ' '.join([word for word in nltk.tokenize.word_tokenize(str(row['pre_proc_tweet'])) if not word in stop_words])
+        #new_tweet = ' '.join([word for word in nltk.tokenize.word_tokenize(str(row['pre_proc_tweet'])) if word not in stop_words])
+        space = ' '
+        new_tweet = ''
+        for word in nltk.tokenize.word_tokenize(str(row['pre_proc_tweet'])):
+            if(word not in stop_words):
+                new_tweet = new_tweet + word + space
         return new_tweet
 def addPartsSpeech(tweet):
     pos_tag = str(nltk.pos_tag(nltk.tokenize.word_tokenize(str(tweet))))
@@ -80,8 +80,9 @@ def lemmatizer(pos_tag):
     return lem
 
 def cleanMentions(mentions):
-    new_mentions = mentions.replace('No Mentions Associated with Tweet', '')
-    #new_mentions = mentions.replace('|','').replace(']','')
+    new_mentions = mentions.replace('\'No Mentions Associated with Tweet\',', '')
+    new_mentions = mentions.replace('\'No Mentions Associated with Tweet\'', '')
+    new_mentions = new_mentions.replace('[','').replace(']','').replace(',','')
     return new_mentions
 
 def breakWords(tweet):
@@ -94,29 +95,37 @@ def breakWords(tweet):
     new_tweet =new_tweet.replace("won't","will not")
     new_tweet =new_tweet.replace("shouldn't","should not")
     new_tweet =new_tweet.replace("wouldn't","would not")
+    new_tweet =new_tweet.replace("it's","")
     return new_tweet
 def clean(chunk_df, file_name):
     chunk_df['language_desc'] = chunk_df['language'].map({'en': 'english', 'und': 'unidentified', 'fr': 'french', 'nl': 'Dutch',
                                 'de': 'german', 'sv': 'swedish', 'ja': 'japanese', 'es': 'spanish', 'ko': 'korean',
                                 'it': 'italian'})
-    
-    chunk_df['tweet_full'] =  chunk_df[['text', 'text_retweet']].apply(lambda x: ''.join(str(x)), axis=1) 
+
+    chunk_df_text = chunk_df['text'].dropna()
+    chunk_df_textrt = chunk_df['text_retweet'].dropna()
+    chunk_df_full = chunk_df_text.append(chunk_df_textrt)#.reset_index()
+    #chunk_df_full.columns = ['index','tweet_full']
+    chunk_df['tweet_full'] = chunk_df_full #pd.merge(chunk_df, chunk_df_full, left_index=True, right_index=True)
+    #chunk_df['tweet_full'] =  chunk_df['text'] + chunk_df['text_retweet']#chunk_df[['text', 'text_retweet']].apply(lambda x: ''.join(str(x)), axis=1) 
     chunk_df['tweet_full'] = chunk_df['tweet_full'].apply(breakWords)
+    
     chunk_df['mentions'] =  chunk_df['mentions'].apply(cleanMentions)
     chunk_df['pre_proc_tweet'] = chunk_df['tweet_full'].apply(remoteSpecialChTweets)
     chunk_df['stop_filter_tweet'] = chunk_df.apply(removeStopWords,axis=1)
     chunk_df['pos_tags'] = chunk_df['stop_filter_tweet'].apply(addPartsSpeech)
     chunk_df['stem_filter'] = chunk_df['stop_filter_tweet'].apply(stemFilter)
     chunk_df['lemma_filter'] = chunk_df['pos_tags'].apply(lemmatizer)
+    chunk_df.apply(lambda x: x.replace(';',''))
 
-    chunk_df.to_csv(file_name, sep=',', encoding='utf-8', index = False, header=True)
+    chunk_df.to_csv(file_name, sep=';', encoding='utf-8', index = False, header=True)
 
-if __name__ == "__main__":
-    filename = r'twitter/metoo_all_items.csv'
+
+
+def combineInstagram_TwitterDatasets():
+    filename = r'instagram/scrapy_instagram/scraped/metoo/metoo/metoo_2019.json'
     generator = generator(filename=filename)
-    
     i=0
-    
     while True:
         try:
             outputFile='twitter/data_preprocess/tweet_clean_' + str(i) + '.csv'
@@ -124,4 +133,18 @@ if __name__ == "__main__":
             i+=1
         except StopIteration:
             break
+
+if __name__ == "__main__":
+    #combineInstagram_TwitterDatasets()
+    filename = r'twitter/metoo_all_items.csv'
+    generator = generator(filename=filename)
+    i=0
+    while True:
+        try:
+            outputFile='twitter/data_preprocess/tweet_clean_' + str(i) + '.csv'
+            clean(next(generator), outputFile)
+            i+=1
+        except StopIteration:
+            break
+    
         
