@@ -274,10 +274,10 @@ def getTweets2017(consumer_key, consumer_secret, access_token, access_token_secr
 
 if __name__ == '__main__':
     # input your credentials here
-    consumer_key = 'Nv4v8rMM0EgEN8A4BhyvVlFZO'
-    consumer_secret = 'LSKJYisimrn6miy0Om8ndUvgN5jzqkkmFll0k63ZkClyv2sl4L'
-    access_token = '272599379-ZqaPKdzYJ7bAqdR0ubw975gBT1bbWXJz4JISo6Tu'
-    access_token_secret = 'UG5HsGKxeq8Dhq5zPUJEZZSBEOOMQaOoziKMxKBodNl84'
+    consumer_key = #consumer_key
+    consumer_secret =  # consumer_secret
+    access_token =  # access_token
+    access_token_secret =  # access_secret
 
     crawlTweets(consumer_key, consumer_secret,
                 access_token, access_token_secret)
