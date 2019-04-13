@@ -1,0 +1,21 @@
+{
+  "name": "metoo",
+  "version": "1.0.0",
+  "description": "metoo analysis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "metoo",
+    "data",
+    "science",
+    "analysis"
+  ],
+  "author": "SFU Students.",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

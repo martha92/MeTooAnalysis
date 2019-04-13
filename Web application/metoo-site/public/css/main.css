@@ -1,0 +1,64 @@
+/* body{
+            padding: 0
+            margin:0;
+          } */
+.title {
+  font-family: Garamond, Georgia, serif;
+}
+
+.year-dropdown {
+  font-weight: bold;
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+.search_categories {
+  width: 130px;
+  font-size: 13px;
+  padding: 10px 8px 10px 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.search_categories .select {
+  width: 100px;
+  background: url("arrow.png") no-repeat;
+  background-position: 80% center;
+}
+
+.search_categories .select select {
+  background: transparent;
+  line-height: 1;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 100px;
+  position: relative;
+  z-index: 10;
+  font-size: 1em;
+}
+
+/* text {
+  font-size: 15px;
+} */
+
+.embed-responsive.graph {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  height: 650px;
+}
+
+.h800 {
+  height: 800px !important;
+}
+.h850 {
+  height: 850px !important;
+}

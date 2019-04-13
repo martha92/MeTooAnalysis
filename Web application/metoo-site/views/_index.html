@@ -1,0 +1,104 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>#MeToo Frequency by user tweets</title>
+
+    <meta charset="utf-8" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"
+    ></script>
+
+    <link href="public/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body style="background-color: #fdf5e6">
+    <div class="container pt-4">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="title">Bubble Chart</h1>
+        </div>
+        <div class="col-12 text-left">
+          <div class="row mb-3">
+            <p class=" year-dropdown mb-1 pt-2 ml-3">Select Year:</p>
+
+            <div class="search_categories ml-4">
+              <div class="select">
+                <select
+                  name="search_categories"
+                  id="yearSelect"
+                  onchange="myFunction()"
+                >
+                  <option value="2017" selected>2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019 ">2019</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <div class="card">
+            <div class="card-body" style="background-color: #fdf5e6;">
+              <div id="my_dataviz"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- Load d3.js -->
+  <script src="http://d3js.org/d3.v4.js"></script>
+
+  <!-- Load color scale -->
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+  <!-- Create a div where the graph will take place -->
+
+  <!-- A bit of CSS: change stroke color of circle on hover (white -> black) -->
+  <style>
+    .bubbles {
+      stroke-width: 1px;
+      stroke: white;
+    }
+    .bubbles:hover {
+      stroke: black;
+    }
+  </style>
+
+  <script src="public/js/d3_metoo.js"></script>
+</html>
