@@ -9,9 +9,9 @@ We followed the following pipeline:
 3. Data Cleansing. Remove unecessary characters, stopwords, lemmentation, etc.
 4. Perform EDA.
 5. Detect Fake vs Real accounts.Custom algorithm to predict if an account is a bot or a human. Generate new file only with humans.
-6. Apply topic modelling algorithms like LDA, LDA2Vec, MalletLDA
+6. Apply topic modelling algorithms like LDA, MalletLDA
 7. Create network clusters. Design community clusters of Retweet and Topic network and find primary influencers.
-8. Calculate sentiments of each topic cluster based on hashtags network 
+8. Calculate sentiments of each topic cluster based on hashtags network through loopy belief propagation algorithm and lexical scores of the tweets given by textblob.
 9. Create visualization component in D3 with final findings.
 
 
