@@ -1,0 +1,43 @@
+
+
+<style>
+
+</style>
+
+<div id="fig_el43334504894768589845545"></div>
+<script>
+function mpld3_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(mpld3) !== "undefined" && mpld3._mpld3IsLoaded){
+   // already loaded: just create the figure
+   !function(mpld3){
+       
+       mpld3.draw_figure("fig_el43334504894768589845545", {"width": 1080.0, "height": 720.0, "axes": [{"bbox": [0.125, 0.20000000000000007, 0.775, 0.6799999999999999], "xlim": [736449.1, 737150.9], "ylim": [-3539.4, 75207.4], "xdomain": [[2017, 3, 30, 2, 24, 0, 0.0], [2019, 3, 1, 21, 36, 0, 0.0]], "ydomain": [-3539.4, 75207.4], "xscale": "date", "yscale": "linear", "axes": [{"position": "bottom", "nticks": 8, "tickvalues": null, "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": true, "color": "#FFFFFF", "dasharray": "none", "alpha": 1.0}, "visible": true}, {"position": "left", "nticks": 10, "tickvalues": null, "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": true, "color": "#FFFFFF", "dasharray": "none", "alpha": 1.0}, "visible": true}], "axesbg": "#EAEAF2", "axesbgalpha": null, "zoomable": true, "id": "el43334642175800", "lines": [{"data": "data01", "xindex": 0, "yindex": 1, "coordinates": "data", "id": "el43334642152008", "color": "#4C72B0", "linewidth": 1.75, "dasharray": "none", "alpha": 1, "zorder": 2, "drawstyle": "default"}], "paths": [], "markers": [], "texts": [{"text": "Date", "position": [0.49999999999999994, -0.07617285260224663], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "hanging", "rotation": -0.0, "fontsize": 11.0, "color": "#262626", "alpha": 1, "zorder": 3, "id": "el43334642150328"}, {"text": "Number of tweets", "position": [-0.046146953405017926, 0.5], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -90.0, "fontsize": 11.0, "color": "#262626", "alpha": 1, "zorder": 3, "id": "el43334642150832"}], "collections": [], "images": [], "sharex": [], "sharey": []}], "data": {"data01": [[736481.0, 45.0], [736511.0, 40.0], [736542.0, 61.0], [736573.0, 75.0], [736695.0, 64843.0], [736726.0, 12194.0], [736938.0, 16506.0], [736968.0, 57257.0], [736999.0, 61936.0], [737029.0, 59434.0], [737060.0, 71628.0], [737091.0, 65456.0], [737119.0, 67333.0]]}, "id": "el43334504894768", "plugins": [{"type": "reset"}, {"type": "zoom", "button": true, "enabled": false}, {"type": "boxzoom", "button": true, "enabled": false}]});
+   }(mpld3);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/mpld3
+   require.config({paths: {d3: "https://mpld3.github.io/js/d3.v3.min"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.3.js", function(){
+         
+         mpld3.draw_figure("fig_el43334504894768589845545", {"width": 1080.0, "height": 720.0, "axes": [{"bbox": [0.125, 0.20000000000000007, 0.775, 0.6799999999999999], "xlim": [736449.1, 737150.9], "ylim": [-3539.4, 75207.4], "xdomain": [[2017, 3, 30, 2, 24, 0, 0.0], [2019, 3, 1, 21, 36, 0, 0.0]], "ydomain": [-3539.4, 75207.4], "xscale": "date", "yscale": "linear", "axes": [{"position": "bottom", "nticks": 8, "tickvalues": null, "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": true, "color": "#FFFFFF", "dasharray": "none", "alpha": 1.0}, "visible": true}, {"position": "left", "nticks": 10, "tickvalues": null, "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": true, "color": "#FFFFFF", "dasharray": "none", "alpha": 1.0}, "visible": true}], "axesbg": "#EAEAF2", "axesbgalpha": null, "zoomable": true, "id": "el43334642175800", "lines": [{"data": "data01", "xindex": 0, "yindex": 1, "coordinates": "data", "id": "el43334642152008", "color": "#4C72B0", "linewidth": 1.75, "dasharray": "none", "alpha": 1, "zorder": 2, "drawstyle": "default"}], "paths": [], "markers": [], "texts": [{"text": "Date", "position": [0.49999999999999994, -0.07617285260224663], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "hanging", "rotation": -0.0, "fontsize": 11.0, "color": "#262626", "alpha": 1, "zorder": 3, "id": "el43334642150328"}, {"text": "Number of tweets", "position": [-0.046146953405017926, 0.5], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -90.0, "fontsize": 11.0, "color": "#262626", "alpha": 1, "zorder": 3, "id": "el43334642150832"}], "collections": [], "images": [], "sharex": [], "sharey": []}], "data": {"data01": [[736481.0, 45.0], [736511.0, 40.0], [736542.0, 61.0], [736573.0, 75.0], [736695.0, 64843.0], [736726.0, 12194.0], [736938.0, 16506.0], [736968.0, 57257.0], [736999.0, 61936.0], [737029.0, 59434.0], [737060.0, 71628.0], [737091.0, 65456.0], [737119.0, 67333.0]]}, "id": "el43334504894768", "plugins": [{"type": "reset"}, {"type": "zoom", "button": true, "enabled": false}, {"type": "boxzoom", "button": true, "enabled": false}]});
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & mpld3
+    mpld3_load_lib("https://mpld3.github.io/js/d3.v3.min.js", function(){
+         mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.3.js", function(){
+                 
+                 mpld3.draw_figure("fig_el43334504894768589845545", {"width": 1080.0, "height": 720.0, "axes": [{"bbox": [0.125, 0.20000000000000007, 0.775, 0.6799999999999999], "xlim": [736449.1, 737150.9], "ylim": [-3539.4, 75207.4], "xdomain": [[2017, 3, 30, 2, 24, 0, 0.0], [2019, 3, 1, 21, 36, 0, 0.0]], "ydomain": [-3539.4, 75207.4], "xscale": "date", "yscale": "linear", "axes": [{"position": "bottom", "nticks": 8, "tickvalues": null, "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": true, "color": "#FFFFFF", "dasharray": "none", "alpha": 1.0}, "visible": true}, {"position": "left", "nticks": 10, "tickvalues": null, "tickformat": null, "scale": "linear", "fontsize": 10.0, "grid": {"gridOn": true, "color": "#FFFFFF", "dasharray": "none", "alpha": 1.0}, "visible": true}], "axesbg": "#EAEAF2", "axesbgalpha": null, "zoomable": true, "id": "el43334642175800", "lines": [{"data": "data01", "xindex": 0, "yindex": 1, "coordinates": "data", "id": "el43334642152008", "color": "#4C72B0", "linewidth": 1.75, "dasharray": "none", "alpha": 1, "zorder": 2, "drawstyle": "default"}], "paths": [], "markers": [], "texts": [{"text": "Date", "position": [0.49999999999999994, -0.07617285260224663], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "hanging", "rotation": -0.0, "fontsize": 11.0, "color": "#262626", "alpha": 1, "zorder": 3, "id": "el43334642150328"}, {"text": "Number of tweets", "position": [-0.046146953405017926, 0.5], "coordinates": "axes", "h_anchor": "middle", "v_baseline": "auto", "rotation": -90.0, "fontsize": 11.0, "color": "#262626", "alpha": 1, "zorder": 3, "id": "el43334642150832"}], "collections": [], "images": [], "sharex": [], "sharey": []}], "data": {"data01": [[736481.0, 45.0], [736511.0, 40.0], [736542.0, 61.0], [736573.0, 75.0], [736695.0, 64843.0], [736726.0, 12194.0], [736938.0, 16506.0], [736968.0, 57257.0], [736999.0, 61936.0], [737029.0, 59434.0], [737060.0, 71628.0], [737091.0, 65456.0], [737119.0, 67333.0]]}, "id": "el43334504894768", "plugins": [{"type": "reset"}, {"type": "zoom", "button": true, "enabled": false}, {"type": "boxzoom", "button": true, "enabled": false}]});
+            })
+         });
+}
+</script>
