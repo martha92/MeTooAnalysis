@@ -32,6 +32,7 @@ Data Cleaning and Integration
 Algorithms: Identify fake accounts. Classify Fake(Bot) vs Real(human) account  
 6. Run -> python labelData.py . This will call the botometer library to label some of the data as bot or human.  
 7. Run -> python bot_human_custom.py . This will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
+8. Run-> bot_human.ipynb. This will contain the Random Forest and Decision Tree classifiers.
 
 Algorithms: Retweet Network Analysis  
 The Retweet Network folder contains all the output files, visualization and the code for Retweet Network Analysis  
@@ -46,5 +47,5 @@ Topic_modelling_clustering_sentiments contains all the files for this analysis.
 Overall EDA and Visualization  
 Exploratory Data Analysis and Visualization  
 12. Open the notebook MeToo_EDA.ipynb and run all the EDA tasks. This will generate html files that will be used by the visualization app in the future.  
-13. 
+
 
