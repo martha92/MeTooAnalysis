@@ -1,0 +1,273 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<html>
+
+   <head>
+    <title>#MeToo Frequency by user tweets</title>
+
+  <meta charset="utf-8">
+      <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
+
+  <style>
+    body{
+      padding: 0
+      margin:0;
+    }
+    .title{
+      font-family:Garamond, Georgia, serif;
+    }
+
+    .year-dropdown{
+      font-weight: bold
+    }
+    @media (min-width: 1200px){
+.container {
+    max-width: 1300px;
+}
+}
+    .search_categories{
+  width: 130px;
+  font-size: 13px;
+  padding: 10px 8px 10px 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.search_categories .select{
+  width: 100px;
+  background:url('arrow.png') no-repeat;
+  background-position:80% center;
+}
+
+.search_categories .select select{
+  background: transparent;
+  line-height: 1;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 100px;
+  position: relative;
+  z-index: 10;
+  font-size: 1em;
+}
+  </style>
+
+   </head>
+
+   <body style="background-color: #fdf5e6">
+    <div class="container pt-4">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 class="title">Bubble Chart</h1>
+      </div>
+    <div class="col-12 text-left">
+      <div class="row mb-3">
+       <p class=" year-dropdown mb-1 pt-2 ml-3">Select Year:</p>
+
+       <div class="search_categories ml-4">
+    <div class="select">
+       <select name="search_categories" id="yearSelect" onchange="myFunction()">
+          <option value = "2017" selected>2017</option>
+          <option value = "2018">2018</option>
+          <option value = "2019 ">2019</option>
+        </select>
+     </div>
+ </div>
+</div>
+
+
+    </div>
+    <div class="col-12 text-center">
+      <div class="card">
+        <div class="card-body" style="background-color: #fdf5e6;">
+      <div id="my_dataviz"></div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+   </body>
+
+
+
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+
+<!-- Load color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<!-- Create a div where the graph will take place -->
+
+
+<!-- A bit of CSS: change stroke color of circle on hover (white -> black) -->
+<style>
+.bubbles {
+  stroke-width: 1px;
+  stroke: white;
+}
+.bubbles:hover {
+  stroke: black;
+}
+</style>
+
+<script>
+
+var year="2017";
+var year_dict=[ {year: 2017,
+    fileName: 'bubble_users_2017.csv'},
+    {year: 2018,
+    fileName: 'bubble_users_2018.csv'},
+    {year: 2019,
+    fileName: 'bubble_users_2019.csv'}]
+    // set the dimensions and margins of the graph
+var margin = {top: 10, right: 0, bottom: 30, left: 50},
+    width = 1100
+    height = 500 - margin.top - margin.bottom;
+var svg=null;
+      function myFunction() {console.log("check data")
+        year = document.getElementById("yearSelect").value;
+        //document.getElementById("demo").innerHTML = year;
+        load_data();
+      }
+ load_data();   
+
+function init(){
+  var node=document.querySelector('#my_dataviz')
+      while (node.hasChildNodes()) {
+    node.removeChild(node.lastChild);
+}
+// append the svg object to the body of the page
+svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left+ "," + margin.top + ")");
+}
+//Read the data
+function load_data()
+{
+  init();
+  var index = year_dict.findIndex(function(e){return e.year === +year;}); 
+
+
+  var selectedYear = year_dict[index];
+  d3.csv(selectedYear.fileName, function(data) {
+  console.log(data)
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([0, 800000])
+    .range([ 0,width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  //Add label to X axis
+  svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width/2+30)
+    .attr("y", height+30)
+    .text("Number of Tweets -------->");
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 500000])
+    .range([ height, 0]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
+
+   // Add label for Y axis 
+    svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", 6)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("Number of Followers ----------->");
+
+  // Add a scale for bubble size
+  var z = d3.scaleLinear()
+    .domain([50, 2400])
+    .range([ 4, 40]);
+
+  // Add a scale for bubble color
+  var myColor = d3.scaleOrdinal()
+    .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
+    .range(d3.schemeSet2);
+
+  // -1- Create a tooltip div that is hidden by default:
+  var tooltip = d3.select("#my_dataviz")
+    .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "#A0BED6")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("color", "black")
+
+  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+  var showTooltip = function(d) {
+    
+    tooltip
+      .style("opacity", 1)
+      .html("Name: " + d.name + "<br>" +"# Tweets about #MeToo:" + d.tweet_count + "<br>" +"Location:"+ d.location)
+      .style("position", "absolute")
+      .style("left", (d3.mouse(this)[0]+30) + "px")
+      .style("top", (d3.mouse(this)[1]+30) + "px")
+  }
+  var moveTooltip = function(d) {
+    tooltip
+      .style("left", (d3.mouse(this)[0]+30) + "px")
+      .style("top", (d3.mouse(this)[1]+30) + "px")
+      
+  }
+  var hideTooltip = function(d) {
+    tooltip
+      .transition()
+      .delay(1000)
+      .duration(2000)
+      .style("opacity", 0)
+  }
+
+  // Add dots
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("class", "bubbles")
+      .attr("cx", function (d) { return x(d.total_number_of_tweets); } )
+      .attr("cy", function (d) { return y(d.followers_count); } )
+      .attr("r", function (d) { return z(d.tweet_count); } )
+      .style("fill", "#640064" )
+    // -3- Trigger the functions
+    .on("mouseover", showTooltip )
+    .on("mousemove", moveTooltip )
+    .on("mouseleave", hideTooltip )
+
+  });
+}
+</script>
+</html>
