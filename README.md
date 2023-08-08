@@ -63,8 +63,17 @@ python bot_human/labelData.py #this will call the botometer library to label som
 python bot_human/bot_human_custom.py #this will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
 bot_human/bot_human.ipynb #this will contain the Random Forest and Decision Tree classifiers.
 ```
-<br /> <br /> 
-4. Topic Modelling
+
+**5. Topic Modelling:** to answer our question 
+> Can we find any similarity in beliefs and emotions of different users and group them together?
+* Train Topic Model with different variants of LDA to get the optimal model and perform EDA. Visualize the topic distribution and Calculate the similarity of different topics to get the overlap between the topics.
+* Design topic clusters and Calculate the sentiments using textblob and belief propagation algorithm.
+<br />
+
+```Algorithms:``` ```LDA``` ```MalletLDA``` ```sklearn``` ```RandomForestClassifier```
+
+
+
 5. Network Clustering
 6. Sentiment Analysis
 7. Visualization
