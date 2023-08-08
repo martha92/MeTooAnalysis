@@ -1,4 +1,27 @@
-# MeTooAnalysis
+# #MeToo Movment Analysis [![Twitter URL](https://img.icons8.com/color/48/twitter--v1.png)](https://twitter.com/) [![Facebook URL](https://img.icons8.com/fluency/48/facebook-new.png)](https://www.facebook.com/) [![Instagram URL](https://img.icons8.com/fluency/48/instagram-new.png)](https://www.instagram.com/)
+
+
+
+**#MeToo**, a term coined by social activist Tarana Burke, to promote **empowerment through empathy** among **_sexual assault_** and **_harassment survivors_**. It became a widespread movement on social media when actress **Alyssa Milano** encouraged spreading this hashtag  to attempt to draw attention to workplace sexual violence. With more than **500,000** retweets and **12 million** posts in Facebook within first **24 hours**, **#MeToo** soon became a voice strong enough to bring down **201** Powerful Men according to The New York Times. 
+
+
+_Through this project we intend to analyze the virality of data from **Data Science** perspective and add value to the social cause behind this movement._
+
+
+### Our Goal: 
+Suggest Targeted Approach to spread awareness and help in the society.
+
+**Questions we intend to answer:**
+
+_1. Can we identify **real vs fake users** on the social media plateform?_<br />
+_2. Can we find any **similarity in beliefs and emotions** of different users and group them together?_<br />
+_3. **Who** is more involved in this movement?_<br />
+_4. What are the different **countries** and **languages** that became part of **#MeToo**?_<br />
+_5. How can we put together all these information and **spread awareness** in a **faster** and **targeted** manner?_<br />
+_6. Can we **learn something new** from technology perspective?_<br />
+
+<br /><br /><br /><br /><br /><br />
+==================
 
 Welcome to the Me Too Analysis repository.
 This project has the intend of suggest a targeted approach to spread awareness and help in the society.
