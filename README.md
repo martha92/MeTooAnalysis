@@ -54,12 +54,14 @@ python combineDatasets.py #merge instagram and twitter schema into one consolida
 
 
 
-**4. Fake Account Detection:** Identify fake accounts. Classify Fake(Bot) vs Real(human) account
-```Tools:``` ```python``` ```nltk``` ```pandas``` ```autocorrect```
+**4. Fake Account Detection:** Identify fake accounts. Classify Fake(Bot) vs Real(human) account <br /> 
+```Tools:``` ```matplotlib``` ```botometer``` ```sklearn``` ```RandomForestClassifier```
+* Use botometer python library to identify bot accounts based on twitter activity for these accounts.
+* Generate a training sample to train a **Random Forest Classifier** model
 ```python
-python labelData.py #this will call the botometer library to label some of the data as bot or human.  
-python bot_human_custom.py #this will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
-bot_human.ipynb #this will contain the Random Forest and Decision Tree classifiers.
+python bot_human/labelData.py #this will call the botometer library to label some of the data as bot or human.  
+python bot_human/bot_human_custom.py #this will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
+bot_human/bot_human.ipynb #this will contain the Random Forest and Decision Tree classifiers.
 ```
 <br /> <br /> 
 4. Topic Modelling
