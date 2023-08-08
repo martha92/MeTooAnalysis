@@ -29,15 +29,25 @@ python crawlTweets.py
 scrapy crawl #metoo
 ```
 
-**2. Data Cleaning & Exploratory Data Analysis:** Remove unecessary characters, stopwords, lemmentation, etc. Combining data from twitter and instagram into a single dataset.<br /> 
+**2. Data Cleaning:** perform following data cleaning steps: <br /> 
 ```Tools:``` ```python``` ```nltk``` ```pandas``` ```autocorrect```
+
+* Remove unecessary special characters
+* Remove stopwords
+* Add part-of-speach tagging
+* Lemmatization
+* Remove non-supported languages
+* Combining data from twitter and instagram into a single dataset
 
 ```python
 python data_preprocessing.py #pre-processing the data
 python combineDatasets.py #merge instagram and twitter schema into one consolidated dataset
 ```
+**3. Exploratory Data Analysis:**
 
-**3. Fake Account Detection:** Identify fake accounts. Classify Fake(Bot) vs Real(human) account
+
+**4. Fake Account Detection:** Identify fake accounts. Classify Fake(Bot) vs Real(human) account
+```Tools:``` ```python``` ```nltk``` ```pandas``` ```autocorrect```
 ```python
 python labelData.py #this will call the botometer library to label some of the data as bot or human.  
 python bot_human_custom.py #this will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
