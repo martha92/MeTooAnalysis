@@ -21,10 +21,29 @@ Suggest Targeted Approach to spread awareness and help in the society.
 6. Can we **learn something new** from technology perspective?
 
 ## Data Science Pipeline:
-**1. Data Collection & Storage:** we collected data from twitter and instagram social media website
+**1. Data Collection & Storage:** we collected data from twitter and instagram social media websites.<br /> 
+```Tools:``` ```python``` ```tweepy``` ```scrapy```
 
-2. Data Cleaning & EDA
-3. Fake Account Detection
+```python
+python crawlTweets.py
+scrapy crawl #metoo
+```
+
+**2. Data Cleaning & Exploratory Data Analysis:** Remove unecessary characters, stopwords, lemmentation, etc. Combining data from twitter and instagram into a single dataset.<br /> 
+```Tools:``` ```python``` ```nltk``` ```pandas``` ```autocorrect```
+
+```python
+python data_preprocessing.py #pre-processing the data
+python combineDatasets.py #merge instagram and twitter schema into one consolidated dataset
+```
+
+**3. Fake Account Detection:** Identify fake accounts. Classify Fake(Bot) vs Real(human) account
+```python
+python labelData.py #this will call the botometer library to label some of the data as bot or human.  
+python bot_human_custom.py #this will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
+bot_human.ipynb #this will contain the Random Forest and Decision Tree classifiers.
+```
+<br /> <br /> 
 4. Topic Modelling
 5. Network Clustering
 6. Sentiment Analysis
