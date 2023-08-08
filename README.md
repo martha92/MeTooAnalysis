@@ -8,17 +8,27 @@
 _Through this project we intend to analyze the virality of data from **Data Science** perspective and add value to the social cause behind this movement._
 
 
-### Our Goal: 
+## Our Goal: 
 Suggest Targeted Approach to spread awareness and help in the society.
 
 **Questions we intend to answer:**
 
-_1. Can we identify **real vs fake users** on the social media plateform?_<br />
-_2. Can we find any **similarity in beliefs and emotions** of different users and group them together?_<br />
-_3. **Who** is more involved in this movement?_<br />
-_4. What are the different **countries** and **languages** that became part of **#MeToo**?_<br />
-_5. How can we put together all these information and **spread awareness** in a **faster** and **targeted** manner?_<br />
-_6. Can we **learn something new** from technology perspective?_<br />
+1. Can we identify **real vs fake users** on the social media plateform?
+2. Can we find any **similarity in beliefs and emotions** of different users and group them together?
+3. **Who** is more involved in this movement?
+4. What are the different **countries** and **languages** that became part of **#MeToo**?
+5. How can we put together all these information and **spread awareness** in a **faster** and **targeted** manner?
+6. Can we **learn something new** from technology perspective?
+
+## Data Science Pipeline:
+**1. Data Collection & Storage:** we collected data from twitter and instagram social media website
+
+2. Data Cleaning & EDA
+3. Fake Account Detection
+4. Topic Modelling
+5. Network Clustering
+6. Sentiment Analysis
+7. Visualization
 
 <br /><br /><br /><br /><br /><br />
 ==================
