@@ -66,11 +66,17 @@ bot_human/bot_human.ipynb #this will contain the Random Forest and Decision Tree
 
 **5. Topic Modelling:** to answer our question 
 > Can we find any similarity in beliefs and emotions of different users and group them together?
-* Train Topic Model with different variants of LDA to get the optimal model and perform EDA. Visualize the topic distribution and Calculate the similarity of different topics to get the overlap between the topics.
+
+we performed topic modelling using statistical model **Latent Dirichlet Allocation (LDA)**, a _generative probabilistic model_ that assumes each topic is a mixture over an underlying set of words, and each document is a mixture of over a set of topic probabilities to **uncovering hidden structure** in a collection of texts to uncover hidden topics.
+
+```Tools:``` ```LDA``` ```TextBlob``` ```Visualization``` ```InfoMap```
+
+* Train Topic Model with different variants of LDA to get the optimal model and perform EDA.
+* Visualize the topic distribution and Calculate the similarity of different topics to get the overlap between the topics.
 * Design topic clusters and Calculate the sentiments using textblob and belief propagation algorithm.
 <br />
 
-```Algorithms:``` ```LDA``` ```MalletLDA``` ```sklearn``` ```RandomForestClassifier```
+
 
 
 
