@@ -33,9 +33,9 @@ scrapy crawl #metoo
 ```Tools:``` ```python``` ```nltk``` ```pandas``` ```autocorrect```
 
 * Remove unecessary special characters
-* Remove stopwords
-* Add part-of-speach tagging
-* Lemmatization
+* Remove __stopwords__
+* Add __part-of-speach tagging__
+* __Lemmatization__
 * Remove non-supported languages
 * Combining data from twitter and instagram into a single dataset
 
