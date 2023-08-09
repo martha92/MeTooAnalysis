@@ -16,7 +16,7 @@ Suggest Targeted Approach to spread awareness and help in the society.
 1. Can we identify **real vs fake users** on the social media plateform?
 2. Can we find any **similarity in beliefs and emotions** of different users and group them together?
 3. **Who** is more involved in this movement?
-4. What are the different **countries** and **languages** that became part of **#MeToo**?
+4. What are the different **countries/regions** and **languages** that became part of **#MeToo**?
 5. How can we put together all these information and **spread awareness** in a **faster** and **targeted** manner?
 6. Can we **learn something new** from technology perspective?
 
@@ -44,6 +44,8 @@ python data_preprocessing.py #pre-processing the data
 python combineDatasets.py #merge instagram and twitter schema into one consolidated dataset
 ```
 **3. Exploratory Data Analysis:**
+
+> What are the different countries/regions and languages that became part of #MeToo?
 
 ```Insights:``` 
 * __English__ was the most preferred language (90% tweets) followed by Spanish (5%) & French (1%) 
