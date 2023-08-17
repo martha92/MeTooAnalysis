@@ -44,9 +44,7 @@ python data_preprocessing.py #pre-processing the data
 python combineDatasets.py #merge instagram and twitter schema into one consolidated dataset
 ```
 **3. Exploratory Data Analysis:**
-
 > What are the different countries/regions and languages that became part of #MeToo?
-<br />
 
 Visualize the location (captured at state, country granularity) via a pie chart using ```matplotlib``` <br />
 
