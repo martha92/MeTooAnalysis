@@ -94,11 +94,16 @@ We create community clustering using graph analytics to identify influencer node
 * We use spark graphframe [labelPropagation](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#label-propagation-algorithm-lpa) algorithm for detecting communities in networks.
 * Additionally, we use [PageRank](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#pagerank) algorithem to find the influencer nodes. The nodes with high pagerank are the main influencer in a community detected by labelPropagation.
 
+```Visualizing``` the retweet network. Color of node represents the community detected by labelPropagation, and the size of node represents the page rank of the node.
+| <img src="retweet_network.png" width="350" title="hover text">  | <img src="retweet_network_influencer.png" width="350" title="hover text">  | 
+| ------------- | ------------- |
+
+```Insight```
+* Visualizing the retweet network allows us to identify the influencer nodes of a local community as well as the size of the community with respect to others.
+* One could use the influencers identify using the above technique to launch targeted marketing campaign to reach maximum audience.
 
 
-
-
-**6. Sentiment Analysis:**
+**7. Sentiment Analysis:**
 
 
 5. Network Clustering
