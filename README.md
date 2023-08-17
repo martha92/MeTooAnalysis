@@ -58,18 +58,19 @@ Visualize the location (captured at state, country granularity) via a pie chart 
 
 **4. Fake Account Detection:** Identify fake accounts. Classify Fake(Bot) vs Real(human) account <br /> 
 ```Tools:``` ```matplotlib``` ```botometer``` ```sklearn``` ```RandomForestClassifier```
-* Use botometer python library to identify bot accounts based on twitter activity for these accounts.
-* Generate a training sample to train a **Random Forest Classifier** model
+* Genrate training data: Use botometer python library to identify bot accounts based on twitter activity for these accounts. Ideally, in an industrial setting I would use the bot accounts identifed by SME/Human investigators as training set.
+* Use the training sample generated using botometer to train a **Random Forest Classifier** model and apply it on test set.
+  
 ```python
 python bot_human/labelData.py #this will call the botometer library to label some of the data as bot or human.  
 python bot_human/bot_human_custom.py #this will generate 2 files, 1 called prediction_bot_humans.csv with the classification predicted by the algorithm and a file called humans.csv which will only contain the records that were classified as non-fake accounts.  
 bot_human/bot_human.ipynb #this will contain the Random Forest and Decision Tree classifiers.
 ```
 
-**5. Topic Modelling:** to answer our question 
+**5. Topic Modeling:** to answer our question 
 > Can we find any similarity in beliefs and emotions of different users and group them together?
 
-we performed topic modelling using statistical model **Latent Dirichlet Allocation (LDA)**, a _generative probabilistic model_ that assumes each topic is a mixture over an underlying set of words, and each document is a mixture of over a set of topic probabilities to **uncovering hidden structure** in a collection of texts to uncover hidden topics.
+we performed topic modeling using statistical model **Latent Dirichlet Allocation (LDA)**, a _generative probabilistic model_ that assumes each topic is a mixture over an underlying set of words, and each document is a mixture of over a set of topic probabilities to **uncovering hidden structure** in a collection of texts to uncover hidden topics.
 
 ```Tools:``` ```LDA``` ```TextBlob``` ```Visualization``` ```InfoMap```
 
@@ -78,8 +79,15 @@ we performed topic modelling using statistical model **Latent Dirichlet Allocati
 * Design topic clusters and Calculate the sentiments using textblob and belief propagation algorithm.
 <br />
 
+```Topic modeling Visualization``` <br />
 
+<img src="topic-modelling-viz.png" width="900" title="hover text"> <br />
 
+```Insight```
+* Topic modeling is able to uncover tweets that are in language other then English, as highlighted in the diagram, cluster 7, 8, 10.
+* Show overlap between non-english language cluster dispite being different lanuguage for each of the cluster 7, 8, 9.
+
+**6. Sentiment Analysis:**
 
 
 5. Network Clustering
@@ -98,7 +106,7 @@ We followed the following pipeline:
 3. Data Cleansing. Remove unecessary characters, stopwords, lemmentation, etc.
 4. Perform EDA.
 5. Detect Fake vs Real accounts.Custom algorithm to predict if an account is a bot or a human. Generate new file only with humans.
-6. Apply topic modelling algorithms like LDA, MalletLDA
+6. Apply topic modeling algorithms like LDA, MalletLDA
 7. Create network clusters. Design community clusters of Retweet and Topic network and find primary influencers.
 8. Calculate sentiments of each topic cluster based on weighted average of sentiments scores of hashtags network through loopy belief propagation algorithm and lexical scores of the tweets given by textblob.
 9. Create visualization component in D3 with final findings.
@@ -127,11 +135,11 @@ Algorithms: Retweet Network Analysis
 The Retweet Network folder contains all the output files, visualization and the code for Retweet Network Analysis  
 8. Run -> Retweet Network/retweet_graph.ipynb . This python notebook maps data graphically and performs network analysis. In the process it calls retweet_graph_lpa.py which is a pyspark implementation for detecting community clusters and finding influencers.  
 
-Algorithm: Topic Modelling,clustering,sentiments analysis  
-Topic_modelling_clustering_sentiments contains all the files for this analysis.  
-9. Run -> Topic_modelling_clustering_sentiments/input_HG.ipynb . This python notebook prepares input for Hashtag network  
-10. Run -> Topic_modelling_clustering_sentiments/LBP.ipynb . This python notebook prepares runs loopy belief algorithm to compute sentiment scores for Hashtag network  
-11. Run -> Topic_modelling_clustering_sentiments/topic_modelling_clustering_sentiments.ipynb . This python notebook performs topic modelling, detects topic community and calculates sentiments of each of the communities using outputs from above two processes.  
+Algorithm: Topic modeling,clustering,sentiments analysis  
+Topic_modeling_clustering_sentiments contains all the files for this analysis.  
+9. Run -> Topic_modeling_clustering_sentiments/input_HG.ipynb . This python notebook prepares input for Hashtag network  
+10. Run -> Topic_modeling_clustering_sentiments/LBP.ipynb . This python notebook prepares runs loopy belief algorithm to compute sentiment scores for Hashtag network  
+11. Run -> Topic_modeling_clustering_sentiments/topic_modeling_clustering_sentiments.ipynb . This python notebook performs topic modeling, detects topic community and calculates sentiments of each of the communities using outputs from above two processes.  
 
 Overall EDA and Visualization  
 Exploratory Data Analysis and Visualization  
