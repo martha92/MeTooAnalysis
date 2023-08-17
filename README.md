@@ -46,7 +46,7 @@ python combineDatasets.py #merge instagram and twitter schema into one consolida
 **3. Exploratory Data Analysis:**
 
 > What are the different countries/regions and languages that became part of #MeToo?
-
+Visualize the location (captured at state, country granularity) via a pie chart using ```matplotlib``` <br />
 ```Insights:``` 
 * __English__ was the most preferred language (90% tweets) followed by Spanish (5%) & French (1%) 
 * #MeToo became most popular in __Austin__ and __Atlanta__
