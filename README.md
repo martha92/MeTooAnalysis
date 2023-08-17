@@ -15,7 +15,7 @@ Suggest Targeted Approach to spread awareness and help in the society.
 
 1. Can we identify **real vs fake users** on the social media plateform?
 2. Can we find any **similarity in beliefs and emotions** of different users and group them together?
-3. **Who** is more involved in this movement?
+3. **Who** are the most influencial user associated withthe movement?
 4. What are the different **countries/regions** and **languages** that became part of **#MeToo**?
 5. How can we put together all these information and **spread awareness** in a **faster** and **targeted** manner?
 6. Can we **learn something new** from technology perspective?
@@ -86,6 +86,17 @@ we performed topic modeling using statistical model **Latent Dirichlet Allocatio
 ```Insight```
 * Topic modeling is able to uncover tweets that are in language other then English, as highlighted in the diagram, cluster 7, 8, 10.
 * Show overlap between non-english language cluster dispite being different lanuguage for each of the cluster 7, 8, 9.
+
+**6. Retweet Network Analysis :** to answer below question
+> **Who** is more involved in this movement?
+
+We create community clustering using graph analytics to identify influencer nodes. We use retweets to create a network where nodes are the people doing retweet connected to another node/person whom they are retweeting. 
+* We use spark graphframe [labelPropagation](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#label-propagation-algorithm-lpa) algorithm for detecting communities in networks.
+* Additionally, we use [PageRank](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#pagerank) algorithem to find the influencer nodes. The nodes with high pagerank are the main influencer in a community detected by labelPropagation.
+
+
+
+
 
 **6. Sentiment Analysis:**
 
