@@ -103,9 +103,17 @@ We create community clustering using graph analytics to identify influencer node
 * One could use the influencers identify using the above technique to launch targeted marketing campaign to reach maximum audience.
 
 
-**7. Sentiment Analysis:**
+**7. Sentiment Analysis:** in this section we use [Loopy Belieft Propagation](https://en.wikipedia.org/wiki/Belief_propagation) to determine the sentiment associated with a hashtag. Sentiment label for a hashtag is dependednt on the other hastag in the same tweet as well the overall sentiment of the tweet itself. Hence a hashtag used with other hastag commonly used in negative tweeks then the sentiment is likely to be negative and vice versa.
+
+Here are the steps:
+
+1) Use [TextBlob](https://textblob.readthedocs.io/en/dev/quickstart.html#sentiment-analysis) to identify sentiment (pos, neg, neutral) associated with the tweet text.
+2) Calculate the probablity score (P<sub>i</sub> where i &isin; pos, neg, neutral) of a hashtag (x) for each sentiment type (i) as time the __x__ was used in the tweet with sentiment label __i__/ total number of tweets that has __x__.
+3) Construct an undirected graph where each hashtag represents a node connected by an edge if two nodes/hashtags were used in the same tweet. The weight of the edge is proportional to number of shared tweets / total number of tweets in the dataset.
+4) Run the Loopy Belief Propagation algorithm for 5 iteratiion till it converges to output the sentiment label for each hashtag.
 
 
+<!-- 
 5. Network Clustering
 6. Sentiment Analysis
 7. Visualization
@@ -161,4 +169,5 @@ Overall EDA and Visualization
 Exploratory Data Analysis and Visualization  
 12. Open the notebook MeToo_EDA.ipynb and run all the EDA tasks. This will generate html files that will be used by the visualization app in the future.  
 
+-->
 
