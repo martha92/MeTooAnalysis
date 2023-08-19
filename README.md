@@ -72,7 +72,7 @@ bot_human/bot_human.ipynb #this will contain the Random Forest and Decision Tree
 
 we performed topic modeling using statistical model **Latent Dirichlet Allocation (LDA)**, a _generative probabilistic model_ that assumes each topic is a mixture over an underlying set of words, and each document is a mixture of over a set of topic probabilities to **uncovering hidden structure** in a collection of texts to uncover hidden topics.
 
-```Tools:``` ```LDA``` ```TextBlob``` ```Visualization``` ```InfoMap```
+```Tools:``` ```LDA``` ```TextBlob``` ```Visualization```
 
 * Train Topic Model with different variants of LDA to get the optimal model and perform EDA.
 * Visualize the topic distribution and Calculate the similarity of different topics to get the overlap between the topics.
@@ -90,27 +90,33 @@ we performed topic modeling using statistical model **Latent Dirichlet Allocatio
 **6. Retweet Network Analysis :** to answer below question
 > **Who** is more involved in this movement?
 
-We create community clustering using graph analytics to identify influencer nodes. We use retweets to create a network where nodes are the people doing retweet connected to another node/person whom they are retweeting. 
+We create **community clustering using graph analytics** to identify influencer nodes. We use retweets to create a network where nodes are the people doing retweet connected to another node/person whom they are retweeting. 
 * We use spark graphframe [labelPropagation](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#label-propagation-algorithm-lpa) algorithm for detecting communities in networks.
-* Additionally, we use [PageRank](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#pagerank) algorithem to find the influencer nodes. The nodes with high pagerank are the main influencer in a community detected by labelPropagation.
+* Additionally, we use [PageRank](https://graphframes.github.io/graphframes/docs/_site/user-guide.html#pagerank) algorithem to find the influencer nodes. The nodes with **high pagerank** are the main **influencer** in a community detected by labelPropagation.
 
-```Visualizing``` the retweet network. Color of node represents the community detected by labelPropagation, and the size of node represents the page rank of the node.
+```Visualizing``` the retweet network. Color of node represents the **community detected by labelPropagation**, and the size of node is proportional to the page rank of the node which represents the overall importance of the node.
 | <img src="retweet_network.png" width="350" title="hover text">  | <img src="retweet_network_influencer.png" width="350" title="hover text">  | 
 | ------------- | ------------- |
 
 ```Insight```
-* Visualizing the retweet network allows us to identify the influencer nodes of a local community as well as the size of the community with respect to others.
+* Visualizing the retweet network allows us to **identify the influencer nodes of a local community** as well as the size of the community with respect to others.
 * One could use the influencers identify using the above technique to launch targeted marketing campaign to reach maximum audience.
 
 
-**7. Sentiment Analysis:** in this section we use [Loopy Belieft Propagation](https://en.wikipedia.org/wiki/Belief_propagation) to determine the sentiment associated with a hashtag. Sentiment label for a hashtag is dependednt on the other hastag in the same tweet as well the overall sentiment of the tweet itself. Hence a hashtag used with other hastag commonly used in negative tweeks then the sentiment is likely to be negative and vice versa.
+**7. Sentiment Analysis:** in this section we use [Loopy Belief Propagation](https://en.wikipedia.org/wiki/Belief_propagation) to determine the **sentiment associated with a hashtag**. Sentiment label for a hashtag is dependednt on the other hastag in the same tweet as well the overall sentiment of the tweet itself. Hence a hashtag used with other hastag commonly used in negative tweets then the sentiment is likely to be negative and vice versa.
+
+```Tools:``` ```Loopy Belief Propagation``` ```TextBlob```
 
 Here are the steps:
 
 1) Use [TextBlob](https://textblob.readthedocs.io/en/dev/quickstart.html#sentiment-analysis) to identify sentiment (pos, neg, neutral) associated with the tweet text.
-2) Calculate the probablity score (P<sub>i</sub> where i &isin; pos, neg, neutral) of a hashtag (x) for each sentiment type (i) as time the __x__ was used in the tweet with sentiment label __i__/ total number of tweets that has __x__.
-3) Construct an undirected graph where each hashtag represents a node connected by an edge if two nodes/hashtags were used in the same tweet. The weight of the edge is proportional to number of shared tweets / total number of tweets in the dataset.
-4) Run the Loopy Belief Propagation algorithm for 5 iteratiion till it converges to output the sentiment label for each hashtag.
+2) Calculate the probablity score (P<sub>h[i]</sub> where h &isin; hashtags and i &isin; pos, neg, neutral) of a hashtag (h) for each sentiment type (i) as the number of time __h__ was used in the tweet with sentiment label __i__/ total number of tweets that has __h__.
+3) Construct an undirected graph where each hashtag represents a node connected by an edge if two nodes/hashtags were used in the same tweet. The weight (W<sub>hi,hj</sub> where hi, hj &isin; hashtags) of the edge is proportional to number of shared tweets / total number of tweets in the dataset.
+4) Run the [Loopy Belief Propagation](https://en.wikipedia.org/wiki/Belief_propagation) algorithm till it converges to output the sentiment label for each hashtag. The **Loopy Belief Propagation algorithm is a message-passing algorithm** where each of the neighbour of a given node passes message which is proportional to the probablity score computed from the sentiment of the associated tweets, number of shared tweets and message score from previous iteration. **Sum of these message from the neighbouring nodes** is then used to compute marginal probablity i.e. the **sentiment score for the hashtag**.
+
+Message Passing Formula from node h1 to h2: <br />
+
+$` M^{t_i}_{h_1->h_2} \propto P_{h1} * W_{h_1,h_2} * M^{t_{i-1}}_{h_1->h_2} where \: h_1,h_2 \: \epsilon \: hashtags `$
 
 
 <!-- 
